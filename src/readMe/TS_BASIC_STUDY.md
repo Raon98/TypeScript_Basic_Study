@@ -44,7 +44,82 @@ let week1:string[] = ['mon','tue','wed'] //String배열
     b[0].toLowerCase() //정상
     b[1].toLowerCase() // Number형이기때문에 사용불가X 오류
 ```
+***
+3. `void`
+> `void는 함수에서 아무 것도 반환하지 않을때 주로 사용`
+```typescript
+function sayHello():void{
+   console.log('hello')
+   //return 반환값이 없음
+}
+```
+***
+4. `never`
+> `에러를 반환하거나 영원히 끝나지 않는 함수의 타입으로 사용`
+```typescript
+function showError():never{
+    throw new Error();
+}
 
+function infLoop():never {
+    while (true){
+        // 무한루프
+    }
+}
+```
+***
+5 `enum`
+> `비슷한 값들끼리 묶어서 숫자 형태로 쓰고싶을 때 사용`
+```typescript
+#TS
+enum Os {
+    windos,
+    IOS,
+    Android
+}
+
+#JAVASCIRT
+'use strict';
+let Os;
+ (function (Os){
+  Os[Os["window"] = 0] = "window"''
+  Os[Os["IOS"] = 1] = "IOS";
+  Os[Os["Android"] = 2] ="Android";
+ })(Os || (Os = {}))
+```
+`1. Enum 데이터안에 수동으로 값을 주지않으면 자동으로 0부터 1까지 증가하면서 순서대로 값이 할당`
+<br> `2. 수동으로 입력시 상위 아이템에 준 값부터 1씩 증가하면서 값이 할당`
+```typescript
+enum Os {
+    windos = 3,
+    IOS = 10, 
+    Android
+}
+    Os[Os["Android"] = 11] = "Android"
+```
+`3. JS변환된값을 보면 양방향 매핑 되어있음`
+```js
+ console.log(Os[10]) = "IOS"
+ console.log(Os["IOS"]) = 10
+``` 
+`4. 숫자가 아닌 문자열을 넣을 수도 있다`<br>`  - 양방향매핑X 단반향매핑O` 
+```typescript
+enum Os {
+    windos = 'win',
+    IOS = 'ios', 
+    Android ='and'
+}
+```
+` 5. Enum Type을 이용해 enum안에 있는 데이터를 사용할 수 있도록 만들어줄 수 있다.`
+```typescript
+   let myOs:Os;
+   myOs = Os.Window
+```
+` 6. null 과 undefined`
+```typescript
+ let a:null = null;
+ let b:undefined = undefined;
+```
 <br>
 <br>
 <br>
