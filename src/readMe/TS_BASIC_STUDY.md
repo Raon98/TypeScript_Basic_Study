@@ -120,6 +120,57 @@ enum Os {
  let a:null = null;
  let b:undefined = undefined;
 ```
+***
+- **인터페이스**
+  <br>
+  *`INTERFACE`는 인터페이스 내에 선언된 프로퍼티 혹은 메서드의 구현을 강제하여 `일관성`을 유지할 수 있게 하는 장치*
+> 인터페이스 안에 있는 프로퍼티에는 값이 아닌 타입이 들어가게됨
+```typescript
+   interface User {
+      name : string;
+      age : number;
+  }
+  
+  let user : User = {
+    name : 'xx',
+    age : 30
+  } 
+  console.log(user.age) // 30
+```
+>`있어도 되고 없어도 되는 프로퍼티의 경우!` => `프로퍼티 이름뒤에 ? 표시`!!
+```typescript
+   interface User {
+    name : string;
+    age : number;
+    gender? : string
+    }
+    
+    let user : User = {
+      name : 'cheol',
+      age : 25
+    }
+    user.age = 26
+    user.gender = 'men'
+
+```
+>`생성할 때 제외하고는 그 프로퍼티의 내용을 수정 불가능하게 하는 방법 : readonly 속성 부여`!!
+
+```typescript
+    interface User {
+        name : string;
+        age : number;
+        readonly birth : string; 
+    }
+
+    let user : User = {
+     name : 'cheol',
+     age : 25,
+     birth : '1998'
+    }
+    user.age = 26
+    user.birth = '2000' //오류 
+
+```
 <br>
 <br>
 <br>
