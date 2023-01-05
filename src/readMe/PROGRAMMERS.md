@@ -40,4 +40,20 @@ result.a의 값을 result.a + 1, 즉, 1+1, 2로 세팅합니다.
 
 [참조 : 네이버블로그](https://hianna.tistory.com/459)
 
+***
+**arr.REDUCE 함수**
+>arr.reduce((누적값, 현잿값, 인덱스, 요소) => { return 결과 }, 초깃값);
+```javascript
+array.reduce((acc,cur) => ({ ...acc,
+        [cur]: (acc[cur] || 0) + 1
+    }), {})
+```
+> arr.reduce 이용해 배열 만들기 //초기값 배열로설정
+```javascript
+    result = oneTwoThree.reduce((acc, cur) => {
+      acc.push(cur % 2 ? '홀수' : '짝수');
+      return acc;
+    }, []);
+    result; // ['홀수', '짝수', '홀수']
+```
 
