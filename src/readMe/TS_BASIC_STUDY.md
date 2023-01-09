@@ -171,8 +171,62 @@ enum Os {
     user.birth = '2000' //오류 
 
 ```
+### INTERFACE 고급 사용법
+```typescript
+    interface User {
+        name : string;
+        age : number;
+        gender? : string;
+        readonly birthYear : number;
+        1? : string;
+        2? : string;
+        3? : string;
+        4? : string;
+}
+```
+`이러한 방법으로 작성할수 있지만 더 스마트하게 작성할 수 있다.`
+<br>**key:key속성 : value속성 형태**
+```typescript
+    interface User {
+        name : string;
+        age : number;
+        gender? : string;
+        readonly birthYear : number;
+        [grade:number] : string
+}
+
+    let user : User = {
+        name : 'xx',
+        age : 30,
+        birthYear : 2000,
+        1 : 'A',
+        2 : 'B'
+    }
+```
+>이때 문자열로 올 수있는 경우가 너무많기때문에 `TYPE(키워드) [NAME] = 문자열 리턴 타입` 을 설정
+```typescript
+    type Score = 'A' | 'B' | 'C' | 'D'
+    interface User {
+        name : string;
+        age : number;
+        gender? : string;
+        readonly birthYear : number;
+        [grade:number] : Score
+}
+
+    let user : User = {
+        name : 'xx',
+        age : 30,
+        birthYear : 2000,
+        1 : 'g', // 오류
+        2 : 'B'
+    }
+
+```
+
 <br>
 <br>
 <br>
 
-[참조 : 코딩악마](https://ssocoit.tistory.com/s205?category=974473)
+[[참조] : 코딩악마](https://ssocoit.tistory.com/s205?category=974473)
+<br>[[참조] : 코딩하는 경제학도](https://ssocoit.tistory.com/207?category=974473) 
