@@ -224,9 +224,85 @@ enum Os {
 
 ```
 
+***
+알고리즘 기초
+####화살표함수(Arrow) 와 일반 함수 차이
+1. This
+   - 일반 함수 <Br> `일반함수는 함수를 선언할 때 this에 바인딩할 객체가 정적으로 결정되는 것이 아니고,
+   함수를 호출할 때 함수가 어떻게 호출되었는지에 따라 this에 바인딩할 객체가 동적으로 결정된다.`
+
+   - 화살표 함수 <br>
+   `화살표 함수는 함수를 선언할 때 this에 바인딩할 객체가 정적으로 결정된다.
+   화살표 함수의 this 언제나 상위 스코프의 this를 가리킨다.(Lexical this)
+   또한 call, apply, bind 메소드를 사용하여 this를 변경할 수 없다.`
+
+```javascript
+    function fun() {
+      this.name = "하이";
+      return {
+        name: "바이",
+        speak: function () {
+          console.log(this.name);
+        },
+      };
+    }
+    
+    function arrFun() {
+      this.name = "하이";
+      return {
+        name: "바이",
+        speak: () => {
+          console.log(this.name);
+        },
+      };
+    }
+    
+    const fun1 = new fun();
+    fun1.speak(); // 바이
+    
+    const fun2 = new arrFun();
+    fun2.speak(); // 하이
+```
+>일반 함수는 자신이 종속된 객체를 this로 가리키고 화살표 함수는 자신이 종속된 인스턴스를 가리킨다.
+
+ 2. 생성자 함수로 사용 가능 여부
+ <br> - 일반 함수는 생성자 함수 O
+ <br> - 화살표 함수는 생성자 함수 X
+```javascript
+    function fun() {
+      this.num = 1234;
+    }
+    const arrFun = () => {
+      this.num = 1234;
+    };
+    
+    const funA = new fun();
+    console.log(funA.num); // 1234
+    
+    const funB = new arrFun(); // Error
+```
+3. arguments 사용 가능 여부 <br>
+`arguments란, 함수에 전달되는 인수들을 배열 형태로 나타낸 객체`
+    - 일반 함수 에서는 함수가 실행 될때 암묵적으로 arguments 변수가 전달되어 사용할 수 있다.
+   ```javascript
+    function fun() {
+        console.log(arguments); // Arguments(3) [1, 2, 3, callee: ƒ, Symbol(Symbol.iterator): ƒ]
+    }
+            
+    fun(1, 2, 3);
+   ```
+    - 화살표 함수에서는 arguments 변수가 전달되지 않는다.
+   ```javascript
+   const arrFun = () => {
+    console.log(arguments); // Uncaught ReferenceError: arguments is not defined
+    };
+    
+    arrFun(1, 2, 3);
+   ```
 <br>
 <br>
 <br>
 
 [[참조] : 코딩악마](https://ssocoit.tistory.com/s205?category=974473)
-<br>[[참조] : 코딩하는 경제학도](https://ssocoit.tistory.com/207?category=974473) 
+<br>[[참조] : 코딩하는 경제학도](https://ssocoit.tistory.com/207?category=974473)
+<br>[[참조] : 혜미의 개발 블로그](https://hhyemi.github.io/2021/06/09/arrow.html) 
