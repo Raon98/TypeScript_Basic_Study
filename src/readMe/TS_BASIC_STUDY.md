@@ -171,6 +171,7 @@ enum Os {
     user.birth = '2000' //오류 
 
 ```
+***
 ### INTERFACE 고급 사용법
 ```typescript
     interface User {
@@ -224,6 +225,66 @@ enum Os {
 
 ```
 ***
+### 인터페이스로 함수만들기
+```typescript
+    interface Add {
+    (num1:number, num2:number): number;
+    }
+    
+    const add : Add = (x,y) => {
+      return x+y;
+    }
+    add(10,20)
+```
+### 인터페이스로 클래스 만들기
+
+```typescript
+        interface Car {
+        color: string;
+        wheels: number;
+    
+        start(): void;
+    }
+
+    class Bmw implements Car {
+        color = 'red';
+        wheels = 4;
+    
+        start() {
+            console.log('go!')
+        }
+    
+        // 생성자 함수도 동일하지만 인터페이스에 선언한 프로퍼티들은 다들어가야됨
+        constructor(c:string) {
+            this.color = c
+        }
+    }
+    
+    const b = new Bmw('green')
+    console.log(b)
+```
+### 인터페이스의 확장
+```typescript
+    interface Car {
+        color: string;
+        wheels: number;
+        start(): void;
+    }
+    interface price {
+        money : number
+    }
+    interface Benz extends Car , price {  //,로 여러개 상속도 가능
+        stop(): void;
+        door: number;
+    }
+    
+    const banz : Benz = {
+        door : 5,
+        stop() {
+            console.log('Stop!')
+        }
+    } // 오류 : 인터페이스 Car의 선언된 프로퍼티들도 다 정의해야됨
+```
 <br>
 <br>
 <br>
