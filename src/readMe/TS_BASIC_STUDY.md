@@ -287,7 +287,7 @@ enum Os {
 ```
 - **함수**
 
-0. 기본 사용법
+0.1 기본 사용법
     - TypeScript에서 함수는 Type 지정말고는 동일
 
 ```typescript
@@ -297,7 +297,7 @@ enum Os {
     //리턴할 값이 없으면 void 사용
 ```
 
-1.  Optional Parameter
+0.2  Optional Parameter
  - 인터페이스와 동일하게 ?(Optional Parameter)를 이용해서 __선택적__ 으로 매개변수를 받을 수 있다.
 ```typescript
     // 기본형
@@ -330,6 +330,14 @@ enum Os {
         }
     }
 ```
+0.3  전개 구문
+```typescript
+    function add(...num: number[]) {
+        return num.reduce((result,num) => result + num,0)
+    }
+    add(1,2,3) // 6
+```
+
 <br>
 <br>
 <br>
