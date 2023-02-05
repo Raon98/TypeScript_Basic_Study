@@ -285,6 +285,51 @@ enum Os {
         }
     } // 오류 : 인터페이스 Car의 선언된 프로퍼티들도 다 정의해야됨
 ```
+- **함수**
+
+0. 기본 사용법
+    - TypeScript에서 함수는 Type 지정말고는 동일
+
+```typescript
+    function add (num1:number, num2:number) : void {
+        console.log(num1 + num2)
+    }
+    //리턴할 값이 없으면 void 사용
+```
+
+1.  Optional Parameter
+ - 인터페이스와 동일하게 ?(Optional Parameter)를 이용해서 __선택적__ 으로 매개변수를 받을 수 있다.
+```typescript
+    // 기본형
+    function hello(name? : string){
+        return `Hello, ${name || 'world'}`;
+    }
+    const result1 = hello(); // hello world
+    const result2 = hello('Missa') // hello Missa
+    const result3 = hello(123) // 오류
+    
+    //미리지정을 해줘도됨
+    function hello2(name = "world"){
+        return `Hello ${name}`;
+    }
+```
+  Optional Parameter를 사용할 시 주의할점!
+  `해당 매개변수는 필수 매개변수 뒷편으로 해놔야됨 - 그렇지않으면 1개만 받았을때 어느 매개변수인지 알지 못함`
+
+```typescript
+    //오류
+    function hello(age?:number,name:string):string{
+        if(name !== undefined){
+            return `hello ${name}. You age ${age}`
+        }
+    }
+    //대체법
+    function hello(age :number | undefined ,name:string):string{
+        if(name !== undefined){
+            return `hello ${name}. You age ${age}`
+        }
+    }
+```
 <br>
 <br>
 <br>
