@@ -338,7 +338,34 @@ enum Os {
     add(1,2,3) // 6
 ```
 
-<br>
+1. 인터페이스와 함수
+```typescript
+    interface User {
+        name : string
+    }
+    const Sam: User = {name : 'Sam'}
+
+    function showName() {
+        console.log(this.name); //  this가 어떤 타입인지 알수없기 떄문에 밀줄
+    }
+    const a = showName().bind(Sam);
+    a();
+```
+this의 타입을 정의해주기 위해서는 `첫 번쨰 매개변수로 this의 타입을 정의`해주면된다.
+```typescript
+    function showName(this:User) {
+        console.log(this.name); //  this가 어떤 타입인지 알수없기 떄문에 밀줄
+    }
+```
+만약 다른 매개변수를 받더라도 맨앞에 this를 정의 할 수도있다.
+매개변수를 받더라도 this가 아닌 그 다음 요소가 받아진다.
+```typescript
+    function showName(this:User, age:number, gender:'m'|'f') {
+        console.log(this.name ,age , gender); //  this가 어떤 타입인지 알수없기 떄문에 밀줄
+    }
+```
+
+<br> 
 <br>
 <br>
 
