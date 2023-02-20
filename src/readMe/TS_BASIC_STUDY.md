@@ -364,6 +364,34 @@ this의 타입을 정의해주기 위해서는 `첫 번쨰 매개변수로 this�
         console.log(this.name ,age , gender); //  this가 어떤 타입인지 알수없기 떄문에 밀줄
     }
 ```
+1.0 함수 오버로딩
+- 매개변수로 number 타입을 요소로 받는지, String 타입을 요소로 받는지에따라 다른 결과값 반환
+
+##### TYPESCRIPT는 함수가 작동하기 전부터 발생할 수 있는 에러를 체크할수있다는 장점
+```typescript
+    interface User {
+        name: string;
+        age: number;
+    }
+    
+    function join(name:string,age: string) : string 
+    function join(name:string, age:number) : User
+
+    function join(name: string, age: number | string): User | string {
+        if(typeof age === "number"){
+            return {
+                name,
+                age
+            };
+        }else{
+            return "나이는 숫자로 입력해주세요!"
+        }
+    }
+    const sam: User  =join('Sam',30);
+    const jong: String = join('jong','20');
+```
+위 처럼 리턴 타입을 정확히 명시 해줘야 오류메세지 X
+
 
 <br> 
 <br>
